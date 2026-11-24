@@ -36,6 +36,10 @@ async function loadTable() {
 
 	try {
 		const data = await GetPersonalMetricsByGroup(groupFilter)
+		let ovz = 0
+		let svo = 0
+		let srt = 0
+
 		tbody.innerHTML = ''
 
 		if (!data || data.length === 0) {
@@ -77,6 +81,7 @@ async function loadTable() {
 				safeNum(item.L1),
 				safeNum(item.L2),
 				safeNum(item.L3),
+				safeNum(item.Special),
 			]
 
 			fields.forEach((val, idx) => {
@@ -97,12 +102,34 @@ async function loadTable() {
 					td.classList.add('critical-cell')
 				}
 
-				if (idx === 1 && topTPI.has(item)) {
-					td.classList.add('top-medal-cell')
-					td.textContent = `${topTPI.get(item)} ${val}`
+				if (idx === 1) {
+					const num = Number(item.Special) || 0
+
+					const badges = []
+					if (Math.floor(num / 100) % 10 >= 1) {
+						badges.push('🛡️')
+						svo += 1
+					} // СВО
+					if (Math.floor(num / 10) % 10 >= 1) {
+						badges.push('🧸')
+						srt += 1
+					} // сирота
+					if (num % 10 >= 1) {
+						badges.push('♿')
+						ovz += 1
+					} // ОВЗ
+
+					const medal = topTPI.has(item) ? topTPI.get(item) : ''
+					if (medal) td.classList.add('top-medal-cell')
+
+					const prefix = [medal, ...badges].filter(Boolean).join(' ')
+					if (prefix) td.textContent = `${prefix} ${val}`
 				}
 
-				tr.appendChild(td)
+				// special не вставляем
+				if (idx !== 17) {
+					tr.appendChild(td)
+				}
 			})
 
 			// СНАРУЖИ цикла — работаем с tr
@@ -112,6 +139,9 @@ async function loadTable() {
 
 			tbody.appendChild(tr)
 		})
+		document.getElementById('ovzData').textContent = `ОВЗ - ${ovz}`
+		document.getElementById('svoData').textContent = `СВО - ${svo}`
+		document.getElementById('srtData').textContent = `Сироты - ${srt}`
 	} catch (err) {
 		console.error('Ошибка:', err)
 		tbody.innerHTML = `<tr><td colspan="17" style="color: red;">Ошибка: ${err}</td></tr>`

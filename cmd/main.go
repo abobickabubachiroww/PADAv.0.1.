@@ -34,7 +34,7 @@ func main() {
 		Width:  1920,
 		Height: 900,
 		AssetServer: &assetserver.Options{
-			Assets: assets, // Обязательно остается в main.go
+			Assets: assets,
 		},
 		OnStartup: wailsApp.Startup,
 		Bind: []interface{}{
