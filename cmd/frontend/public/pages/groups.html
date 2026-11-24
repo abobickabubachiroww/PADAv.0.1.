@@ -1,6 +1,37 @@
 <div class="page">
 	<h1>Групповой отчет</h1>
+	<div>
+		<form id="group-search-form">
+			<label for="institute">Институт</label>
+			<input list="institutes" id="institute" name="institute" required />
+			<datalist id="institutes">
+				<option value="ИЦС">ИЦС</option>
+				<option value="ИИИМ">ИИИМ</option>
+				<option value="АСТ">АСТ</option>
+				<option value="ИХТ">ИХТ</option>
+			</datalist>
 
+			<label for="year">Год</label>
+			<input
+				id="year"
+				name="year"
+				type="number"
+				min="2000"
+				max="2100"
+				required
+			/>
+
+			<label for="half">Весна/Осень</label>
+			<input list="halfs" id="half" name="half" required />
+			<datalist id="halfs">
+				<option value="Весна">Весна</option>
+				<option value="Осень">Осень</option>
+			</datalist>
+
+			<button type="submit">Поиск</button>
+			<span id="search-status"></span>
+		</form>
+	</div>
 	<div class="table-container">
 		<table>
 			<thead>

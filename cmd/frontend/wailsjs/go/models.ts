@@ -33,23 +33,23 @@ export namespace model {
 	export class PersonalMetrics {
 	    ID: number;
 	    FIO: string;
+	    GroupName: string;
 	    Dadt: string;
-	    Smar: number;
-	    Smap: number;
-	    Smsd: number;
-	    PctSmar: number;
-	    PctSmap: number;
-	    Rvp: number;
-	    Tpi: number;
-	    Rvpd: number;
-	    Tpid: number;
-	    Gdp: number;
-	    Pss: number;
-	    Psa: number;
-	    Iis: number;
-	    Ipe: number;
-	    L04: number;
-	    L12: number;
+	    CnStr: number;
+	    RVP: number;
+	    TPI: number;
+	    RVPD: number;
+	    TPID: number;
+	    GDP: number;
+	    PSS: number;
+	    PSA: number;
+	    IIS: number;
+	    IPE: number;
+	    L0: number;
+	    L1: number;
+	    L2: number;
+	    L3: number;
+	    Special: number;
 	
 	    static createFrom(source: any = {}) {
 	        return new PersonalMetrics(source);
@@ -59,23 +59,44 @@ export namespace model {
 	        if ('string' === typeof source) source = JSON.parse(source);
 	        this.ID = source["ID"];
 	        this.FIO = source["FIO"];
+	        this.GroupName = source["GroupName"];
 	        this.Dadt = source["Dadt"];
-	        this.Smar = source["Smar"];
-	        this.Smap = source["Smap"];
-	        this.Smsd = source["Smsd"];
-	        this.PctSmar = source["PctSmar"];
-	        this.PctSmap = source["PctSmap"];
-	        this.Rvp = source["Rvp"];
-	        this.Tpi = source["Tpi"];
-	        this.Rvpd = source["Rvpd"];
-	        this.Tpid = source["Tpid"];
-	        this.Gdp = source["Gdp"];
-	        this.Pss = source["Pss"];
-	        this.Psa = source["Psa"];
-	        this.Iis = source["Iis"];
-	        this.Ipe = source["Ipe"];
-	        this.L04 = source["L04"];
-	        this.L12 = source["L12"];
+	        this.CnStr = source["CnStr"];
+	        this.RVP = source["RVP"];
+	        this.TPI = source["TPI"];
+	        this.RVPD = source["RVPD"];
+	        this.TPID = source["TPID"];
+	        this.GDP = source["GDP"];
+	        this.PSS = source["PSS"];
+	        this.PSA = source["PSA"];
+	        this.IIS = source["IIS"];
+	        this.IPE = source["IPE"];
+	        this.L0 = source["L0"];
+	        this.L1 = source["L1"];
+	        this.L2 = source["L2"];
+	        this.L3 = source["L3"];
+	        this.Special = source["Special"];
+	    }
+	}
+
+}
+
+export namespace ui {
+	
+	export class GroupReportFilter {
+	    institute: string;
+	    year: number;
+	    half: string;
+	
+	    static createFrom(source: any = {}) {
+	        return new GroupReportFilter(source);
+	    }
+	
+	    constructor(source: any = {}) {
+	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.institute = source["institute"];
+	        this.year = source["year"];
+	        this.half = source["half"];
 	    }
 	}
 

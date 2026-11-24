@@ -6,6 +6,10 @@ export function GetGroupReportList() {
   return window['go']['ui']['WailsApp']['GetGroupReportList']();
 }
 
-export function GetPersonalMetrics() {
-  return window['go']['ui']['WailsApp']['GetPersonalMetrics']();
+export function GetPersonalMetricsByGroup(arg1) {
+  return window['go']['ui']['WailsApp']['GetPersonalMetricsByGroup'](arg1);
+}
+
+export function SearchGroupReports(arg1) {
+  return window['go']['ui']['WailsApp']['SearchGroupReports'](arg1);
 }
